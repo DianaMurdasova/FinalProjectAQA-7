@@ -35,13 +35,26 @@ public class MainPageTest {
     @Test
     @Description("1")
     public void openMainPageCorrect(){
-        mainPage.openMainPage().chooseRusLanguageOnModalWindow().waitForVisibilityOfWelcomeString();
+        mainPage
+                .openMainPage()
+                .chooseRusLanguageOnModalWindow()
+                .waitForVisibilityOfWelcomeString();
         logger.info("The main page is open correctly!");
     }
 
-//    @Test
-//    @Description
-//    public void checkingSearchFieldWorkingCorrect(){}
+
+    @Test
+    @Description("2")
+    public void checkingSearchFieldWorkingCorrect(){
+    mainPage
+            .openMainPage()
+            .chooseRusLanguageOnModalWindow()
+            .sendTextInSearchField()
+            .clickOnSearchButton()
+            .checkingSearchHeaderCorrectVisibility();
+        logger.info("The search field is working correctly!");
+    }
+
 //
 //    @Test
 //    @Description
