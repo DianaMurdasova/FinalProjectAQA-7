@@ -5,11 +5,11 @@ import org.openqa.selenium.WebElement;
 
 public class WorkWithElementClass {
     private WebDriver driver;
-    private WaiterClass waiter;
+    private WaitersClass waiter;
 
     public WorkWithElementClass(WebDriver driver) {
         this.driver = driver;
-        waiter = new WaiterClass(driver);
+        waiter = new WaitersClass(driver);
     }
 
     public void click(WebElement element){

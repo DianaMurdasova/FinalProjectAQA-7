@@ -5,12 +5,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
 import java.time.Duration;
-import java.util.function.Function;
 
-public class WaiterClass {
+public class WaitersClass {
     private WebDriver driver;
 
-    public WaiterClass(WebDriver driver) {
+    public WaitersClass(WebDriver driver) {
         this.driver = driver;
     }
 
