@@ -6,10 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.MainPage;
 import utils.MyAllureListener;
 
@@ -32,33 +29,45 @@ public class MainPageTest {
         driver.quit();
     }
 
-    @Test
-    @Description("1")
+    @Test(priority = 1)
     public void openMainPageCorrect(){
         mainPage
                 .openMainPage()
                 .chooseRusLanguageOnModalWindow()
-                .waitForVisibilityOfWelcomeString();
+                .visibilityOfWelcomeString();
         logger.info("The main page is open correctly!");
     }
 
 
-    @Test
-    @Description("2")
+    @Test(priority = 2)
     public void checkingSearchFieldWorkingCorrect(){
     mainPage
             .openMainPage()
-            .chooseRusLanguageOnModalWindow()
             .sendTextInSearchField()
             .clickOnSearchButton()
             .checkingSearchHeaderCorrectVisibility();
         logger.info("The search field is working correctly!");
     }
 
-//
-//    @Test
-//    @Description
-//    public void switchToRegistrationPage(){}
+    @Test(priority = 3)
+    public void switchToRegistrationPage(){
+        mainPage
+                .openMainPage()
+                .selectRegistrationButton()
+                .checkingEnabledFieldRepeatPassword();
+        logger.info("The registration page is open correctly!");
+    }
+
+    @Test(priority = 4)
+    public void switchToShippingAndPaymentPage(){
+        mainPage
+                .openMainPage()
+                .openDeliveryAndPaymentPage()
+                .visibilityOfDeliveryAndPaymentHeaders();
+        logger.info("Delivery and Payment page is open correctly!");
+    }
+
+
 //
 //    @Test
 //    @Description
