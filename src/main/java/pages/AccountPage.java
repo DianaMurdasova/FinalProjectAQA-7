@@ -118,6 +118,7 @@ public class AccountPage {
 
     //Подвердить видимость сообщения о неуспешном входе в аккаунт
     public AccountPage visibilityOfUnsuccessfulLoginMessage(){
+        waiters.waitForVisibilityOfWebElement(authorizationFailedMessage);
         authorizationFailedMessage.isDisplayed();
         return this;
     }

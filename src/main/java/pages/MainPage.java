@@ -84,7 +84,6 @@ public class MainPage {
         waiters.waitForVisibilityOfWebElement(searchField);
         searchField.sendKeys(Strings.textForSearchField);
         return this;
-
     }
 
     //Нажатие на кнопку Поиск

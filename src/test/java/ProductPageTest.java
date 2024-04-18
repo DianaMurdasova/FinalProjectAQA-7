@@ -9,20 +9,21 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AccountPage;
+import pages.ProductPage;
 import utils.MyAllureListener;
 
 @Listeners({MyAllureListener.class})
 public class ProductPageTest {
     static final Logger logger = LoggerFactory.getLogger(ProductPageTest.class);
     protected WebDriver driver;
-    protected AccountPage accountPage = new AccountPage(driver);
+    protected ProductPage productPage = new ProductPage(driver);
     protected WaitersClass waiters= new WaitersClass(driver);
     protected WorkWithElementClass workWithElement = new WorkWithElementClass(driver);
 
     @BeforeClass
     public void setUp(){
         driver = DriverSetUp.startDriver();
-        accountPage = new AccountPage(driver);
+        productPage = new ProductPage(driver);
     }
     @AfterClass
     public void stop(){
@@ -30,56 +31,68 @@ public class ProductPageTest {
     }
 
     @Test(priority = 1)
-    public void incorrectLoginToPersonalAccount(){
-        accountPage
+    public void openProductCardByClickingOnProductImage(){
+        productPage
                 .openMainPage()
                 .chooseRusLanguageOnModalWindow()
                 .selectAuthorizationButton()
-                .setInvalidEmail()
+                .setValidEmail()
                 .setValidPassword()
-                .clickOnAuthorizationEnterButton();
-        logger.info("The unsuccessful login message is working correctly!");
+                .clickOnAuthorizationEnterButton()
+                .openMainPage()
+                .sendTextInSearchField()
+                .clickOnSearchButton()
+                .clickOnProductCard();
+        logger.info("The open product card by clicking on product image is working correctly!");
     }
 
-
     @Test(priority = 2)
-    public void checkingWorkOfForgotPasswordButton(){
-        accountPage
+    public void addProductToCartWithSelectedColor(){
+        productPage
                 .openMainPage()
-                .selectAuthorizationButton()
-                .clickOnForgotPasswordButton()
-                .visibilityOfEmailFieldOnForgotPasswordPage();
-        logger.info("The Forgot password button is working correctly!");
+                .sendTextInSearchField()
+                .clickOnSearchButton()
+                .clickOnProductCard()
+                .clickOnTigerColor()
+                .clickOnAddToCartButton()
+                .visibilityOfCartWindow();
+        logger.info("Add product to cart with selected color is working correctly!");
     }
 
     @Test(priority = 3)
-    public void correctLoginToPersonalAccount(){
-        accountPage
+    public void addProductToCartWithoutSelectedColor(){
+        productPage
                 .openMainPage()
-                .selectAuthorizationButton()
-                .setValidEmail()
-                .setValidPassword()
-                .clickOnAuthorizationEnterButton();
-        logger.info("The login is working correctly!");
+                .sendTextInSearchField()
+                .clickOnSearchButton()
+                .clickOnProductCard()
+                .clickOnAddToCartButton()
+                .visibilityOfAlertMessage();
+        logger.info("Add product to cart without selected color is working correctly!");
     }
 
     @Test(priority = 4)
-    public void checkingWorkOfOrderHistoryButton(){
-        accountPage
-                .openPersonalAccountPage()
-                .clickOnOrderHistoryButton()
-                .visibilityOfOrderNumberColumnText();
-        logger.info("The Order History button is working correctly!");
+    public void addProductToWishlist() {
+        productPage
+                .openMainPage()
+                .sendTextInSearchField()
+                .clickOnSearchButton()
+                .clickOnProductCard()
+                .clickOnAddToWishlistButton()
+                .visibilityOfAddedToWishlistWindow();
+        logger.info("Add product to wishlist is working correctly!");
     }
 
-
     @Test(priority = 5)
-    public void correctLogoutFromPersonalAccountFromMainPage(){
-        accountPage
+    public void addProductToCompare() {
+        productPage
                 .openMainPage()
-                .clickOnLogoutButtonFromMenu()
-                .clickOnContinueLogoutButton();
-        logger.info("The logout is working correctly!");
+                .sendTextInSearchField()
+                .clickOnSearchButton()
+                .clickOnProductCard()
+                .clickOnAddToCompareButton()
+                .visibilityOfAddedToCompareWindow();
+        logger.info("Add product to compare is working correctly!");
     }
 
 

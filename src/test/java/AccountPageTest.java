@@ -38,7 +38,8 @@ public class AccountPageTest {
                 .selectAuthorizationButton()
                 .setInvalidEmail()
                 .setValidPassword()
-                .clickOnAuthorizationEnterButton();
+                .clickOnAuthorizationEnterButton()
+                .visibilityOfUnsuccessfulLoginMessage();
         logger.info("The unsuccessful login message is working correctly!");
     }
 
