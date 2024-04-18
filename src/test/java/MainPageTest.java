@@ -67,15 +67,14 @@ public class MainPageTest {
         logger.info("Delivery and Payment page is open correctly!");
     }
 
-
-//
-//    @Test
-//    @Description
-//    public void switchToShippingAndPaymentPage(){}
-//
-//    @Test
-//    @Description
-//    public void availabilityOfProductCategoryNames(){}
-
+    @Test(priority = 5)
+    public void switchSiteLanguageToUkr(){
+        mainPage
+                .openMainPage()
+                .ifThereIsRusTextInTitle()
+                .clickUkrLanguageButton()
+                .ifThereIsUkrTextInTitle();
+        logger.info("The page language is Ukrainian!");
+    }
 
 }

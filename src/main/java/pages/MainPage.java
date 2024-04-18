@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class MainPage {
     public WebDriver driver;
@@ -53,7 +54,10 @@ public class MainPage {
     private static WebElement headerPayment;
     @FindBy(xpath = "//h3[text()='СПОСОБЫ ДОСТАВКИ']")
     private static WebElement headerDelivery;
-    //
+    @FindBy(xpath = "//div[@class='web-top-title']")
+    private static WebElement topTitle;
+    @FindBy(xpath = "(//button[text()='УКР'])[2]")
+    private static WebElement languageButtonHeader;
 
 
     //Открытие главной страницы
@@ -119,6 +123,24 @@ public class MainPage {
     public MainPage visibilityOfDeliveryAndPaymentHeaders(){
         headerDelivery.isDisplayed();
         headerPayment.isDisplayed();
+        return this;
+    }
+
+    //Проверить что текстовый заголовок на странице на русском языке
+    public MainPage ifThereIsRusTextInTitle(){
+        Assert.assertEquals(topTitle.getText(), "ИНТЕРНЕТ МАГАЗИН ЭЛЕКТРОННЫХ СИГАРЕТ");
+        return this;
+    }
+
+    //Переключить язык сайта на украинский с помощью кнопки на главной странице
+    public MainPage clickUkrLanguageButton(){
+        languageButtonHeader.click();
+        return this;
+    }
+
+    //Проверить что текстовый заголовок на странице на русском языке
+    public MainPage ifThereIsUkrTextInTitle(){
+        Assert.assertEquals(topTitle.getText(), "ІНТЕРНЕТ МАГАЗИН ЕЛЕКТРОННИХ СИГАРЕТ");
         return this;
     }
 }

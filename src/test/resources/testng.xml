@@ -3,6 +3,7 @@
     <test name="AllTests">
         <classes>
             <class name="MainPageTest"/>
+            <class name="AccountPageTest"/>
         </classes>
     </test>
 </suite>
