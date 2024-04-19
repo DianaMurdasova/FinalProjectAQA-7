@@ -7,12 +7,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 public class MainPage {
     public WebDriver driver;
     public WaitersClass waiters;
     public WorkWithElementClass workWithElement;
+
+    static final Logger logger = LoggerFactory.getLogger(MainPage.class);
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -58,6 +62,7 @@ public class MainPage {
     @Step("Opening the main page")
     public MainPage openMainPage() {
         driver.get(Url.DRSMOKE_HOME_PAGE);
+        logger.info("Trying to open Main page");
         return this;
     }
 
@@ -66,6 +71,7 @@ public class MainPage {
     public MainPage chooseRusLanguageOnModalWindow() {
         waiters.waitForVisibilityOfWebElement(rusLanguageButton);
         rusLanguageButton.click();
+        logger.info("Trying to select the site language RUS in the pop-up window");
         return this;
     }
 
@@ -73,14 +79,16 @@ public class MainPage {
     @Step("Checking the availability of the main page using the Welcome to inscription")
     public MainPage visibilityOfWelcomeString() {
         waiters.waitForVisibilityOfWebElement(welcomeString);
+        logger.info("Checking the availability of the main page using the Welcome to inscription");
         return this;
     }
 
     //Ввод текста в посковую строку
-    @Step("Entering text into the search bar")
+    @Step("Entering text into the search field")
     public MainPage sendTextInSearchField() {
         waiters.waitForVisibilityOfWebElement(searchField);
         searchField.sendKeys(Strings.textForSearchField);
+        logger.info("Entering text" + Strings.textForSearchField + "into the search field");
         return this;
     }
 
@@ -88,22 +96,25 @@ public class MainPage {
     @Step("Clicking the Search button")
     public MainPage clickOnSearchButton(){
         searchButton.click();
+        logger.info("Clicking the Search button");
         return this;
     }
 
     //Проверка наличия правильного заголовка поиска товара на странице поиска
-    @Step("Checking for the correct product search title on the search page")
+    @Step("Checking for the correct searched product search title on the search page")
     public MainPage checkingSearchHeaderCorrectVisibility(){
         waiters.waitForVisibilityOfWebElement(headerFromSearchPage);
+        logger.info("Checking for the correct searched product search title on the search page");
         return this;
     }
 
 
     //Выбор пункта Регистрация в выпадающем списке Личный кабинет
-    @Step("Selecting the Registration item in the Personal Account drop-down list")
+    @Step("Selecting the Registration button in the Personal Account drop-down list")
     public MainPage selectRegistrationButton(){
         personalAccountButton.click();
         registerButton.click();
+        logger.info("Selecting the Registration button in the Personal Account drop-down list");
         return this;
     }
 
@@ -112,6 +123,7 @@ public class MainPage {
     public MainPage checkingEnabledFieldConfirmPassword(){
         waiters.waitForVisibilityOfWebElement(fieldConfirmPassword);
         fieldConfirmPassword.isDisplayed();
+        logger.info("Checking the opening of the registration page by the presence of the Confirm password field");
         return this;
     }
 
@@ -119,6 +131,7 @@ public class MainPage {
     @Step("Open the page Delivery and payment")
     public MainPage openDeliveryAndPaymentPage(){
         deliveryAndPaymentPageButton.click();
+        logger.info("Trying to open the page Delivery and payment");
         return this;
     }
 
@@ -127,6 +140,7 @@ public class MainPage {
     public MainPage visibilityOfDeliveryAndPaymentHeaders(){
         headerDelivery.isDisplayed();
         headerPayment.isDisplayed();
+        logger.info("Checking the presence of the Delivery and Payment fields");
         return this;
     }
 
@@ -134,6 +148,7 @@ public class MainPage {
     @Step("Check that the text title on the page is in Russian")
     public MainPage ifThereIsRusTextInTitle(){
         Assert.assertEquals(topTitle.getText(), "ИНТЕРНЕТ МАГАЗИН ЭЛЕКТРОННЫХ СИГАРЕТ");
+        logger.info("Checking that the text title on the page is in Russian");
         return this;
     }
 
@@ -141,6 +156,7 @@ public class MainPage {
     @Step("Switch the site language to Ukrainian using the button on the main page")
     public MainPage clickUkrLanguageButton(){
         languageButtonHeader.click();
+        logger.info("Switching the site language to Ukrainian using the button on the main page");
         return this;
     }
 
@@ -148,6 +164,7 @@ public class MainPage {
     @Step("Check that the text title on the page is in Ukrainian")
     public MainPage ifThereIsUkrTextInTitle(){
         Assert.assertEquals(topTitle.getText(), "ІНТЕРНЕТ МАГАЗИН ЕЛЕКТРОННИХ СИГАРЕТ");
+        logger.info("Checking that the text title on the page is in Ukrainian");
         return this;
     }
 }

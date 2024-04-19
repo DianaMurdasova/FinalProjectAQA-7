@@ -10,7 +10,7 @@ import utils.MyAllureListener;
 public class MainPageTest {
     static final Logger logger = LoggerFactory.getLogger(MainPageTest.class);
     protected WebDriver driver;
-    protected MainPage mainPage = new MainPage(driver);
+    protected MainPage mainPage;
 
     @BeforeClass
     public void setUp(){

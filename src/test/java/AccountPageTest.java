@@ -13,7 +13,7 @@ import utils.MyAllureListener;
 public class AccountPageTest {
     static final Logger logger = LoggerFactory.getLogger(AccountPageTest.class);
     protected WebDriver driver;
-    protected AccountPage accountPage = new AccountPage(driver);
+    protected AccountPage accountPage;
 
     @BeforeClass
     public void setUp(){
