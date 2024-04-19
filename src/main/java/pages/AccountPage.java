@@ -8,12 +8,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 public class AccountPage {
     public WebDriver driver;
     public WaitersClass waiters;
     public WorkWithElementClass workWithElement;
+    static final Logger logger = LoggerFactory.getLogger(AccountPage.class);
 
     public AccountPage(WebDriver driver) {
         this.driver = driver;
@@ -58,33 +61,37 @@ public class AccountPage {
     private static WebElement orderNumberColumnText;
 
     //Открытие главной страницы
-    @Step("Clicking the Search button")
+    @Step("Opening the main page")
     public AccountPage openMainPage() {
         driver.get(Url.DRSMOKE_HOME_PAGE);
+        logger.info("Opening the main page");
         return this;
     }
 
     //Выбор языка сайта на всплывающем окне
-    @Step("Clicking the Search button")
+    @Step("Selecting the site language in the pop-up window")
     public AccountPage chooseRusLanguageOnModalWindow() {
         waiters.waitForVisibilityOfWebElement(rusLanguageButton);
         rusLanguageButton.click();
+        logger.info("Selecting the site language in the pop-up window");
         return this;
     }
 
     //Открытие страницы Личный кабинет
-    @Step("Clicking the Search button")
+    @Step("Opening Personal Account page")
     public AccountPage openPersonalAccountPage() {
         driver.get(Url.DRSMOKE_PERSONAL_ACCOUNT_PAGE);
+        logger.info("Opening Personal Account page");
         return this;
     }
 
     //Выбор пункта Авторизация в выпадающем списке Личный кабинет
-    @Step("Selecting the Authorization item in the Personal Account drop-down list")
+    @Step("Selecting the Authorization button in the Personal Account drop-down list")
     public AccountPage selectAuthorizationButton(){
         personalAccountButton.click();
         waiters.waitForVisibilityOfWebElement(authorizationButton);
         authorizationButton.click();
+        logger.info("Selecting the Authorization button in the Personal Account drop-down list");
         return this;
     }
     //Ввод правильного имейла
@@ -92,7 +99,7 @@ public class AccountPage {
     public AccountPage setValidEmail() {
         waiters.waitForVisibilityOfWebElement(authorizationEmailField);
         authorizationEmailField.sendKeys(Strings.correctEmail);
-        //logger.info("Trying to send valid mail to field " + email.toString());
+        logger.info("Entering the correct email");
         return this;
     }
 
@@ -101,7 +108,7 @@ public class AccountPage {
     public AccountPage setValidPassword() {
         waiters.waitForVisibilityOfWebElement(authorizationPasswordField);
         authorizationPasswordField.sendKeys(Strings.correctPassword);
-        //logger.info("Trying to send valid mail to field " + email.toString());
+        logger.info("Entering the correct password");
         return this;
     }
     //Ввод неправильного имейла
@@ -109,7 +116,7 @@ public class AccountPage {
     public AccountPage setInvalidEmail() {
         waiters.waitForVisibilityOfWebElement(authorizationEmailField);
         authorizationEmailField.sendKeys(Strings.incorrectEmail);
-        //logger.info("Trying to send valid mail to field " + email.toString());
+        logger.info("Entering an incorrect email");
         return this;
     }
 
@@ -117,6 +124,7 @@ public class AccountPage {
     @Step("Clicking the Login button in the authorization window")
     public AccountPage clickOnAuthorizationEnterButton(){
         authorizationEnterButton.click();
+        logger.info("Clicking the Login button in the authorization window");
         return this;
     }
 
@@ -125,6 +133,7 @@ public class AccountPage {
     public AccountPage visibilityOfUnsuccessfulLoginMessage(){
         waiters.waitForVisibilityOfWebElement(authorizationFailedMessage);
         authorizationFailedMessage.isDisplayed();
+        logger.info("Confirming visibility of the successful login message");
         return this;
     }
 
@@ -133,6 +142,7 @@ public class AccountPage {
     public AccountPage clickOnForgotPasswordButton(){
         waiters.waitForVisibilityOfWebElement(forgotPasswordButton);
         forgotPasswordButton.click();
+        logger.info("Clicking the Forgot password button in the authorization window");
         return this;
     }
 
@@ -140,6 +150,7 @@ public class AccountPage {
     @Step("Check the availability of the email field on the Forgot password page")
     public AccountPage visibilityOfEmailFieldOnForgotPasswordPage(){
         forgotPasswordEmailField.isDisplayed();
+        logger.info("Checking the availability of the email field on the Forgot password page");
         return this;
     }
 
@@ -147,6 +158,7 @@ public class AccountPage {
     @Step("Clicking on the Order History button in your Personal Account")
     public AccountPage clickOnOrderHistoryButton(){
         orderHistoryButton.click();
+        logger.info("Clicking on the Order History button in your Personal Account");
         return this;
     }
 
@@ -154,6 +166,7 @@ public class AccountPage {
     @Step("Confirm the visibility of the column name Order No.")
     public AccountPage visibilityOfOrderNumberColumnText(){
         orderNumberColumnText.isDisplayed();
+        logger.info("Confirming the visibility of the column name Order No.");
         return this;
     }
 
@@ -163,6 +176,7 @@ public class AccountPage {
         personalAccountButton.click();
         waiters.waitForVisibilityOfWebElement(logoutButton);
         logoutButton.click();
+        logger.info("Clicking the Exit button in the top menu");
         return this;
     }
 
@@ -171,6 +185,7 @@ public class AccountPage {
     public AccountPage clickOnContinueLogoutButton(){
         waiters.waitForVisibilityOfWebElement(continueLogoutButton);
         continueLogoutButton.click();
+        logger.info("Clicking the Confirm button to exit your personal account");
         return this;
     }
 

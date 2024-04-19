@@ -7,12 +7,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 public class ProductPage {
     public WebDriver driver;
     public WaitersClass waiters;
     public WorkWithElementClass workWithElement;
+    static final Logger logger = LoggerFactory.getLogger(ProductPage.class);
 
     public ProductPage(WebDriver driver) {
         this.driver = driver;
@@ -69,6 +72,7 @@ public class ProductPage {
     @Step("Opening the main page")
     public ProductPage openMainPage() {
         driver.get(Url.DRSMOKE_HOME_PAGE);
+        logger.info("Opening the main page");
         return this;
     }
 
@@ -77,15 +81,17 @@ public class ProductPage {
     public ProductPage chooseRusLanguageOnModalWindow() {
         waiters.waitForVisibilityOfWebElement(rusLanguageButton);
         rusLanguageButton.click();
+        logger.info("Selecting the site language in the pop-up window");
         return this;
     }
 
     //выбор пункта Авторизация в выпадающем списке Личный кабинет
-    @Step("selecting the Authorization item in the Personal Account drop-down list")
+    @Step("Selecting the Authorization button in the Personal Account drop-down list")
     public ProductPage selectAuthorizationButton(){
         personalAccountButton.click();
         waiters.waitForVisibilityOfWebElement(authorizationButton);
         authorizationButton.click();
+        logger.info("Selecting the Authorization button in the Personal Account drop-down list");
         return this;
     }
     //Ввод правильного имейла
@@ -93,7 +99,7 @@ public class ProductPage {
     public ProductPage setValidEmail() {
         waiters.waitForVisibilityOfWebElement(authorizationEmailField);
         authorizationEmailField.sendKeys(Strings.correctEmail);
-        //logger.info("Trying to send valid mail to field " + email.toString());
+        logger.info("Entering the correct email");
         return this;
     }
 
@@ -102,7 +108,7 @@ public class ProductPage {
     public ProductPage setValidPassword() {
         waiters.waitForVisibilityOfWebElement(authorizationPasswordField);
         authorizationPasswordField.sendKeys(Strings.correctPassword);
-        //logger.info("Trying to send valid mail to field " + email.toString());
+        logger.info("Entering the correct password");
         return this;
     }
 
@@ -110,6 +116,7 @@ public class ProductPage {
     @Step("Clicking the Login button in the authorization window")
     public ProductPage clickOnAuthorizationEnterButton(){
         authorizationEnterButton.click();
+        logger.info("Clicking the Login button in the authorization window");
         return this;
     }
 
@@ -118,6 +125,7 @@ public class ProductPage {
     public ProductPage sendTextInSearchField() {
         waiters.waitForVisibilityOfWebElement(searchField);
         searchField.sendKeys(ProductPage.Strings.textForSearchField);
+        logger.info("Entering text into the search bar");
         return this;
     }
 
@@ -126,22 +134,25 @@ public class ProductPage {
     public ProductPage clickOnSearchButton(){
         waiters.waitForVisibilityOfWebElement(searchButton);
         searchButton.click();
+        logger.info("Clicking the Search button");
         return this;
     }
 
     //Переход в карточку товара путем нажатия на изображение товара
-    @Step("Go to the product card by clicking on the product image")
+    @Step("Going to the product card by clicking on the product image")
     public ProductPage clickOnProductCard(){
         waiters.waitForVisibilityOfWebElement(productImg);
         productImg.click();
+        logger.info("Going to the product card by clicking on the product image");
         return this;
     }
 
     //Нажатие на выбор цвета Tiger
-    @Step("Click on Tiger color selection")
+    @Step("Clicking on Tiger color selection")
     public ProductPage clickOnTigerColor(){
         waiters.waitForVisibilityOfWebElement(selectColorTigerCheck);
         selectColorTigerCheck.click();
+        logger.info("Clicking on Tiger color selection");
         return this;
     }
 
@@ -150,14 +161,16 @@ public class ProductPage {
     public ProductPage clickOnAddToCartButton(){
         waiters.waitForVisibilityOfWebElement(addToCartButton);
         addToCartButton.click();
+        logger.info("Clicking the add to cart button");
         return this;
     }
 
     //Подтвердить открытие окна корзины
-    @Step("Confirm opening of the cart window")
+    @Step("Confirming opening of the cart window")
     public ProductPage visibilityOfCartWindow(){
         waiters.waitForVisibilityOfWebElement(cartWindow);
         cartWindow.isDisplayed();
+        logger.info("Confirming opening of the cart window");
         return this;
     }
 
@@ -166,6 +179,7 @@ public class ProductPage {
     public ProductPage visibilityOfAlertMessage(){
         waiters.waitForVisibilityOfWebElement(messageNeedToChooseColor);
         messageNeedToChooseColor.isDisplayed();
+        logger.info("Confirming opening the visibility of the message about the need to select a device color");
         return this;
     }
 
@@ -173,6 +187,7 @@ public class ProductPage {
     @Step("Clicking the add to wishlist button")
     public ProductPage clickOnAddToWishlistButton(){
         addToWishlistButton.click();
+        logger.info("Clicking the add to wishlist button");
         return this;
     }
 
@@ -181,14 +196,15 @@ public class ProductPage {
     public ProductPage visibilityOfAddedToWishlistWindow(){
         waiters.waitForVisibilityOfWebElement(addedToWishlistWindow);
         addedToWishlistWindow.isDisplayed();
+        logger.info("Confirming window opening Added to wishlist");
         return this;
     }
 
     //Нажатие на кнопку добавления в сравнение
     @Step("Clicking the add to compare button")
     public ProductPage clickOnAddToCompareButton(){
-        //waiters.waitForVisibilityOfWebElement(addToWishlistButton);
         addToCompareButton.click();
+        logger.info("Clicking the add to compare button");
         return this;
     }
     //Подтвердить открытие окна Добавлено в сравнение
@@ -196,6 +212,7 @@ public class ProductPage {
     public ProductPage visibilityOfAddedToCompareWindow(){
         waiters.waitForVisibilityOfWebElement(addedToCompareWindow);
         addedToCompareWindow.isDisplayed();
+        logger.info("Confirming opening window Added to compare");
         return this;
     }
 

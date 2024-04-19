@@ -15,7 +15,6 @@ public class MainPage {
     public WebDriver driver;
     public WaitersClass waiters;
     public WorkWithElementClass workWithElement;
-
     static final Logger logger = LoggerFactory.getLogger(MainPage.class);
 
     public MainPage(WebDriver driver) {
@@ -88,7 +87,7 @@ public class MainPage {
     public MainPage sendTextInSearchField() {
         waiters.waitForVisibilityOfWebElement(searchField);
         searchField.sendKeys(Strings.textForSearchField);
-        logger.info("Entering text" + Strings.textForSearchField + "into the search field");
+        logger.info("Entering text " + Strings.textForSearchField + " into the search field");
         return this;
     }
 
