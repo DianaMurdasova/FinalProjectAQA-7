@@ -1,6 +1,4 @@
 import driver.DriverSetUp;
-import functions.WaitersClass;
-import functions.WorkWithElementClass;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +7,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AccountPage;
-import pages.MainPage;
 import utils.MyAllureListener;
 
 @Listeners({MyAllureListener.class})
@@ -17,8 +14,6 @@ public class AccountPageTest {
     static final Logger logger = LoggerFactory.getLogger(AccountPageTest.class);
     protected WebDriver driver;
     protected AccountPage accountPage = new AccountPage(driver);
-    protected WaitersClass waiters= new WaitersClass(driver);
-    protected WorkWithElementClass workWithElement = new WorkWithElementClass(driver);
 
     @BeforeClass
     public void setUp(){
@@ -42,7 +37,6 @@ public class AccountPageTest {
                 .visibilityOfUnsuccessfulLoginMessage();
         logger.info("The unsuccessful login message is working correctly!");
     }
-
 
     @Test(priority = 2)
     public void checkingWorkOfForgotPasswordButton(){
@@ -73,7 +67,6 @@ public class AccountPageTest {
                 .visibilityOfOrderNumberColumnText();
         logger.info("The Order History button is working correctly!");
     }
-
 
     @Test(priority = 5)
     public void correctLogoutFromPersonalAccountFromMainPage(){

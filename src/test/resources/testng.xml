@@ -4,6 +4,7 @@
         <classes>
             <class name="MainPageTest"/>
             <class name="AccountPageTest"/>
+            <class name="ProductPageTest"/>
         </classes>
     </test>
 </suite>

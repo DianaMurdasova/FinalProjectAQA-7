@@ -1,11 +1,7 @@
 import driver.DriverSetUp;
-import functions.WaitersClass;
-import functions.WorkWithElementClass;
-import io.qameta.allure.Description;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.MainPage;
 import utils.MyAllureListener;
@@ -15,9 +11,6 @@ public class MainPageTest {
     static final Logger logger = LoggerFactory.getLogger(MainPageTest.class);
     protected WebDriver driver;
     protected MainPage mainPage = new MainPage(driver);
-    protected WaitersClass waiters= new WaitersClass(driver);
-    protected WorkWithElementClass workWithElement = new WorkWithElementClass(driver);
-
 
     @BeforeClass
     public void setUp(){
@@ -38,7 +31,6 @@ public class MainPageTest {
         logger.info("The main page is open correctly!");
     }
 
-
     @Test(priority = 2)
     public void checkingSearchFieldWorkingCorrect(){
     mainPage
@@ -54,7 +46,7 @@ public class MainPageTest {
         mainPage
                 .openMainPage()
                 .selectRegistrationButton()
-                .checkingEnabledFieldRepeatPassword();
+                .checkingEnabledFieldConfirmPassword();
         logger.info("The registration page is open correctly!");
     }
 

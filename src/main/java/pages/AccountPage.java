@@ -2,6 +2,7 @@ package pages;
 import constants.Url;
 import functions.WaitersClass;
 import functions.WorkWithElementClass;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -14,22 +15,18 @@ public class AccountPage {
     public WaitersClass waiters;
     public WorkWithElementClass workWithElement;
 
-
-
     public AccountPage(WebDriver driver) {
         this.driver = driver;
         waiters = new WaitersClass(driver);
         workWithElement = new WorkWithElementClass(driver);
         PageFactory.initElements(driver,this);
     }
-
     //сбор стринговых данных
     private static class Strings {
         private final static String correctEmail = "murdasova.diana4@gmail.com";
         private final static String correctPassword = "фьиук4дшіі";
         private final static String incorrectEmail = "murdasova@gmail.com";
     }
-
     // сбор локаторов
     @FindBy(xpath = "//span[@class='hidden-xs hidden-sm hidden-md']")
     private static WebElement personalAccountButton;
@@ -60,14 +57,15 @@ public class AccountPage {
     @FindBy(xpath = "//td[text()='№ Заказа']")
     private static WebElement orderNumberColumnText;
 
-
     //Открытие главной страницы
+    @Step("Clicking the Search button")
     public AccountPage openMainPage() {
         driver.get(Url.DRSMOKE_HOME_PAGE);
         return this;
     }
 
     //Выбор языка сайта на всплывающем окне
+    @Step("Clicking the Search button")
     public AccountPage chooseRusLanguageOnModalWindow() {
         waiters.waitForVisibilityOfWebElement(rusLanguageButton);
         rusLanguageButton.click();
@@ -75,12 +73,14 @@ public class AccountPage {
     }
 
     //Открытие страницы Личный кабинет
+    @Step("Clicking the Search button")
     public AccountPage openPersonalAccountPage() {
         driver.get(Url.DRSMOKE_PERSONAL_ACCOUNT_PAGE);
         return this;
     }
 
-    //выбор пункта Авторизация в выпадающем списке Личный кабинет
+    //Выбор пункта Авторизация в выпадающем списке Личный кабинет
+    @Step("Selecting the Authorization item in the Personal Account drop-down list")
     public AccountPage selectAuthorizationButton(){
         personalAccountButton.click();
         waiters.waitForVisibilityOfWebElement(authorizationButton);
@@ -88,6 +88,7 @@ public class AccountPage {
         return this;
     }
     //Ввод правильного имейла
+    @Step("Entering the correct email")
     public AccountPage setValidEmail() {
         waiters.waitForVisibilityOfWebElement(authorizationEmailField);
         authorizationEmailField.sendKeys(Strings.correctEmail);
@@ -96,6 +97,7 @@ public class AccountPage {
     }
 
     //Ввод правильного пароля
+    @Step("Entering the correct password")
     public AccountPage setValidPassword() {
         waiters.waitForVisibilityOfWebElement(authorizationPasswordField);
         authorizationPasswordField.sendKeys(Strings.correctPassword);
@@ -103,6 +105,7 @@ public class AccountPage {
         return this;
     }
     //Ввод неправильного имейла
+    @Step("Entering an incorrect email")
     public AccountPage setInvalidEmail() {
         waiters.waitForVisibilityOfWebElement(authorizationEmailField);
         authorizationEmailField.sendKeys(Strings.incorrectEmail);
@@ -111,20 +114,22 @@ public class AccountPage {
     }
 
     //Нажатие на кнопку Войти в окне авторизации
+    @Step("Clicking the Login button in the authorization window")
     public AccountPage clickOnAuthorizationEnterButton(){
         authorizationEnterButton.click();
         return this;
     }
 
-    //Подвердить видимость сообщения о неуспешном входе в аккаунт
+    //Подтвердить видимость сообщения о неуспешном входе в аккаунт
+    @Step("Confirm visibility of the successful login message")
     public AccountPage visibilityOfUnsuccessfulLoginMessage(){
         waiters.waitForVisibilityOfWebElement(authorizationFailedMessage);
         authorizationFailedMessage.isDisplayed();
         return this;
     }
 
-
     //Нажатие на кнопку Забыли пароль в окне авторизации
+    @Step("Clicking the Forgot password button in the authorization window")
     public AccountPage clickOnForgotPasswordButton(){
         waiters.waitForVisibilityOfWebElement(forgotPasswordButton);
         forgotPasswordButton.click();
@@ -132,24 +137,28 @@ public class AccountPage {
     }
 
     //Проверить наличие поля для ввода email на странице Забыли пароль
+    @Step("Check the availability of the email field on the Forgot password page")
     public AccountPage visibilityOfEmailFieldOnForgotPasswordPage(){
         forgotPasswordEmailField.isDisplayed();
         return this;
     }
 
     //Нажатие на кнопку История заказов в Личном кабинете
+    @Step("Clicking on the Order History button in your Personal Account")
     public AccountPage clickOnOrderHistoryButton(){
         orderHistoryButton.click();
         return this;
     }
 
-    //Подвердить видимость названия колонки № Заказа
+    //Подтвердить видимость названия колонки № Заказа
+    @Step("Confirm the visibility of the column name Order No.")
     public AccountPage visibilityOfOrderNumberColumnText(){
         orderNumberColumnText.isDisplayed();
         return this;
     }
 
     //Нажатие на кнопку Выход в верхнем меню
+    @Step("Clicking the Exit button in the top menu")
     public AccountPage clickOnLogoutButtonFromMenu(){
         personalAccountButton.click();
         waiters.waitForVisibilityOfWebElement(logoutButton);
@@ -158,6 +167,7 @@ public class AccountPage {
     }
 
     //Нажатие на кнопку Подтвердить для выхода из личного кабинета
+    @Step("Clicking the Confirm button to exit your personal account")
     public AccountPage clickOnContinueLogoutButton(){
         waiters.waitForVisibilityOfWebElement(continueLogoutButton);
         continueLogoutButton.click();

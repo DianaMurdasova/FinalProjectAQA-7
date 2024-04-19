@@ -1,6 +1,4 @@
 import driver.DriverSetUp;
-import functions.WaitersClass;
-import functions.WorkWithElementClass;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +6,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.AccountPage;
 import pages.ProductPage;
 import utils.MyAllureListener;
 
@@ -17,8 +14,6 @@ public class ProductPageTest {
     static final Logger logger = LoggerFactory.getLogger(ProductPageTest.class);
     protected WebDriver driver;
     protected ProductPage productPage = new ProductPage(driver);
-    protected WaitersClass waiters= new WaitersClass(driver);
-    protected WorkWithElementClass workWithElement = new WorkWithElementClass(driver);
 
     @BeforeClass
     public void setUp(){

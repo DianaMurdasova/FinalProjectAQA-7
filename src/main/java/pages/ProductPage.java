@@ -2,6 +2,7 @@ package pages;
 import constants.Url;
 import functions.WaitersClass;
 import functions.WorkWithElementClass;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,8 +13,6 @@ public class ProductPage {
     public WebDriver driver;
     public WaitersClass waiters;
     public WorkWithElementClass workWithElement;
-
-
 
     public ProductPage(WebDriver driver) {
         this.driver = driver;
@@ -30,7 +29,6 @@ public class ProductPage {
         private final static String textForSearchField = "by Plus Pod Kit";
 
     }
-
     // сбор локаторов
     @FindBy(xpath = "//span[@class='hidden-xs hidden-sm hidden-md']")
     private static WebElement personalAccountButton;
@@ -67,15 +65,15 @@ public class ProductPage {
     @FindBy(id = "compare-popup")
     private static WebElement addedToCompareWindow;
 
-
-
     //Открытие главной страницы
+    @Step("Opening the main page")
     public ProductPage openMainPage() {
         driver.get(Url.DRSMOKE_HOME_PAGE);
         return this;
     }
 
     //Выбор языка сайта на всплывающем окне
+    @Step("Selecting the site language in the pop-up window")
     public ProductPage chooseRusLanguageOnModalWindow() {
         waiters.waitForVisibilityOfWebElement(rusLanguageButton);
         rusLanguageButton.click();
@@ -83,6 +81,7 @@ public class ProductPage {
     }
 
     //выбор пункта Авторизация в выпадающем списке Личный кабинет
+    @Step("selecting the Authorization item in the Personal Account drop-down list")
     public ProductPage selectAuthorizationButton(){
         personalAccountButton.click();
         waiters.waitForVisibilityOfWebElement(authorizationButton);
@@ -90,6 +89,7 @@ public class ProductPage {
         return this;
     }
     //Ввод правильного имейла
+    @Step("Entering the correct email")
     public ProductPage setValidEmail() {
         waiters.waitForVisibilityOfWebElement(authorizationEmailField);
         authorizationEmailField.sendKeys(Strings.correctEmail);
@@ -98,6 +98,7 @@ public class ProductPage {
     }
 
     //Ввод правильного пароля
+    @Step("Entering the correct password")
     public ProductPage setValidPassword() {
         waiters.waitForVisibilityOfWebElement(authorizationPasswordField);
         authorizationPasswordField.sendKeys(Strings.correctPassword);
@@ -106,12 +107,14 @@ public class ProductPage {
     }
 
     //Нажатие на кнопку Войти в окне авторизации
+    @Step("Clicking the Login button in the authorization window")
     public ProductPage clickOnAuthorizationEnterButton(){
         authorizationEnterButton.click();
         return this;
     }
 
     //Ввод текста в посковую строку
+    @Step("Entering text into the search bar")
     public ProductPage sendTextInSearchField() {
         waiters.waitForVisibilityOfWebElement(searchField);
         searchField.sendKeys(ProductPage.Strings.textForSearchField);
@@ -119,13 +122,15 @@ public class ProductPage {
     }
 
     //Нажатие на кнопку Поиск
+    @Step("Clicking the Search button")
     public ProductPage clickOnSearchButton(){
         waiters.waitForVisibilityOfWebElement(searchButton);
         searchButton.click();
         return this;
     }
 
-    //Переход в карточку товара
+    //Переход в карточку товара путем нажатия на изображение товара
+    @Step("Go to the product card by clicking on the product image")
     public ProductPage clickOnProductCard(){
         waiters.waitForVisibilityOfWebElement(productImg);
         productImg.click();
@@ -133,6 +138,7 @@ public class ProductPage {
     }
 
     //Нажатие на выбор цвета Tiger
+    @Step("Click on Tiger color selection")
     public ProductPage clickOnTigerColor(){
         waiters.waitForVisibilityOfWebElement(selectColorTigerCheck);
         selectColorTigerCheck.click();
@@ -140,20 +146,23 @@ public class ProductPage {
     }
 
     //Нажатие на кнопку добавления в корзину
+    @Step("Clicking the add to cart button")
     public ProductPage clickOnAddToCartButton(){
         waiters.waitForVisibilityOfWebElement(addToCartButton);
         addToCartButton.click();
         return this;
     }
 
-    //Подвердить открытие окна корзины
+    //Подтвердить открытие окна корзины
+    @Step("Confirm opening of the cart window")
     public ProductPage visibilityOfCartWindow(){
         waiters.waitForVisibilityOfWebElement(cartWindow);
         cartWindow.isDisplayed();
         return this;
     }
 
-    //Подвердить открытие видимости сообщения о необходимости выбрать цвет устройства
+    //Подтвердить открытие видимости сообщения о необходимости выбрать цвет устройства
+    @Step("Confirm opening the visibility of the message about the need to select a device color")
     public ProductPage visibilityOfAlertMessage(){
         waiters.waitForVisibilityOfWebElement(messageNeedToChooseColor);
         messageNeedToChooseColor.isDisplayed();
@@ -161,26 +170,29 @@ public class ProductPage {
     }
 
     //Нажатие на кнопку добавления в закладки
+    @Step("Clicking the add to wishlist button")
     public ProductPage clickOnAddToWishlistButton(){
         addToWishlistButton.click();
         return this;
     }
 
-    //Подвердить открытие окна Добавлено в закладки
+    //Подтвердить открытие окна Добавлено в закладки
+    @Step("Confirm window opening Added to wishlist")
     public ProductPage visibilityOfAddedToWishlistWindow(){
         waiters.waitForVisibilityOfWebElement(addedToWishlistWindow);
         addedToWishlistWindow.isDisplayed();
         return this;
     }
 
-
     //Нажатие на кнопку добавления в сравнение
+    @Step("Clicking the add to compare button")
     public ProductPage clickOnAddToCompareButton(){
         //waiters.waitForVisibilityOfWebElement(addToWishlistButton);
         addToCompareButton.click();
         return this;
     }
-    //Подвердить открытие окна Добавлено в сравнение
+    //Подтвердить открытие окна Добавлено в сравнение
+    @Step("Confirm opening window Added to compare")
     public ProductPage visibilityOfAddedToCompareWindow(){
         waiters.waitForVisibilityOfWebElement(addedToCompareWindow);
         addedToCompareWindow.isDisplayed();
